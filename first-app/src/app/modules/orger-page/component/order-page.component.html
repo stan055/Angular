@@ -1,0 +1,181 @@
+<div class="container pt-5" >
+    <h2>Order Page</h2><br>
+    <form [formGroup]="orderForm" (ngSubmit)="submit()">
+        <div *ngIf="step == 0">
+            <h3>First step - list goods</h3>
+            <div formGroupName="goods" class="drop-list" #insideElement>
+                
+                <ul class="first" (click)="dropDownToggle()">
+                    <li>
+                       <div>
+                        <div>
+                            <h3>Choose goods</h3>
+                        </div>
+                        <div class="triangle">
+                            ▼
+                        </div>
+                       </div>
+                    </li>
+                </ul>
+
+                <ul *ngIf="dropDown;" class="second" >
+                    <li *ngFor="let goods of goodses; index as i;" (change)="goodsToggle(goods.value.id)">
+                        <div>
+                            <label for="{{ goods.value.id }}">
+                                <div>
+                                    <img class="product" src="{{ goods.value.imgUrl[0].imgUrl }}">
+                                </div>
+                                <div>
+                                    <span><b>{{ goods.value.name }}</b></span><br>
+                                    <span>Size: {{ goods.description.size }}</span>&nbsp;&nbsp;
+                                    <span>Color: {{ goods.description.color }}</span><br>
+                                    <span>Count: {{ goods.description.count }}</span><br>
+                                    <span><b>${{ goods.value.price }}</b></span>                     
+                                </div>
+                            </label>
+                            <div>
+
+                                <input type="checkbox" id="{{ goods.value.id }}" name="product" checked *ngIf="goods.description.checked">
+                                <input type="checkbox" id="{{ goods.value.id }}" name="product" *ngIf="!goods.description.checked">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+            <button *ngIf="orderForm.controls.goods.value.goodses.length == 0" disabled type="button" class="btn-next"><b>Next</b></button>
+            <button *ngIf="orderForm.controls.goods.value.goodses.length > 0" type="button" class="btn-next" (click)="nextStep()"><b>Next</b></button>
+        </div>
+
+        <div *ngIf="step == 1">
+            <h3>Second step - delivery address</h3>
+            <div  class="address">
+                <div formGroupName="address" class="pt-3">
+                    <label for="country">Country:</label>&nbsp;
+                    <input type="text" id="country" formControlName="country"><br>
+                    <label for="City">City:</label>&nbsp;
+                    <input type="text" id="City" formControlName="city"><br>
+                    <label for="Address">Address:</label>&nbsp;
+                    <input type="text" id="Address" formControlName="address">
+                </div>
+            </div> 
+            <button type="button" class="btn-next" (click)="nextStep()" *ngIf="orderForm.controls.address.status == 'INVALID'" disabled><b>Next</b></button>
+            <button type="button" class="btn-next" (click)="nextStep()" *ngIf="orderForm.controls.address.status == 'VALID'"><b>Next</b></button>
+            <button type="button" class="btn-prev" (click)="prevStep()"><b>Prev</b></button>
+        </div>
+
+        <div *ngIf="step == 2">
+            <h3>Third step - payment method</h3>
+            <div formGroupName="payment" class="payment">
+                <br>
+                <input type="radio" id="card" value="card" formControlName="payment" name="payment">
+                <label for="card">
+                    <div>Card</div>
+                    <div>
+                        <img width="50px" src="https://www.sonalia.com/wp-content/uploads/2019/04/credit_card_logo.png">
+                    </div>
+                </label>
+                
+                <input type="radio" id="paypal" value="paypal" formControlName="payment" name="payment">
+                <label for="paypal">
+                    <div>PayPal</div>
+                    <div>
+                        <img width="50px" src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg">
+                    </div>
+                </label>
+            
+                <input type="radio" id="cash" value="cash" formControlName="payment" name="payment">
+                <label for="cash">
+                    <div>Cash</div>
+                    <div>
+                        <img width="50px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSQ8qJBKUvWE-XsXZuwV3F5w77aoUXZ38OYNA&usqp=CAU">
+                    </div>
+                </label>
+            </div>
+            <button type="button" class="btn-next" (click)="nextStep()" *ngIf="orderForm.controls.payment.status == 'INVALID'" disabled><b>Next</b></button>
+            <button type="button" class="btn-next" (click)="nextStep()" *ngIf="orderForm.controls.payment.status == 'VALID'"><b>Next</b></button>
+            <button type="button" class="btn-prev" (click)="prevStep()"><b>Prev</b></button>
+        </div>
+
+        <div *ngIf="step == 3">
+            <h3>Forth step - date of delivery</h3>
+            <div formGroupName="date" class="date pt-3">
+                    <br>
+                    <span>
+                        <input #radioButtonToday type="radio" id="today" 
+                            value="{{ dateToday | date: 'yyyy/MM/dd' }}" 
+                            formControlName="delivery" name="delivery" 
+                            (change)="radioDateChange()">
+                        <label for="today">
+                            &nbsp;Today
+                        </label>
+                    </span>
+                
+                    <span>
+                        <input #radioButtonTomorrow type="radio" id="tomorrow" 
+                            value="{{ (dateToday+(8.64e+7)) | date: 'yyyy/MM/dd' }}" 
+                            formControlName="delivery" name="delivery" 
+                            (change)="radioDateChange()">
+                        <label for="tomorrow">
+                            &nbsp;Tomorrow 
+                        </label>
+                    </span>
+                
+                    <p>-OR-</p>
+            
+                <div>
+                    <label for="yourDate">Your date: &nbsp;</label>
+                    <input #yourDate type="date" id="yourDate" name="yourDate"
+                        formControlName="delivery" 
+                        min="{{ dateToday | date: 'yyyy-MM-dd' }}" 
+                        max="{{ dateToday+(8.64e+9) | date: 'yyyy-MM-dd' }}" 
+                        (change)="yourDateChange()">
+                </div>
+                
+            </div>
+            <button type="button" class="btn-next" (click)="nextStep()" *ngIf="orderForm.controls.date.status == 'INVALID'" disabled><b>Next</b></button>
+            <button type="button" class="btn-next" (click)="nextStep()" *ngIf="orderForm.controls.date.status == 'VALID'"><b>Next</b></button>
+            <button type="button" class="btn-prev" (click)="prevStep()"><b>Prev</b></button>
+        </div>
+
+        <div *ngIf="step == 4">
+            <h3>Fifth step - summarize info</h3>
+            <div class="info pt-3">
+                <div>
+                    <h3>Goods</h3>
+                    <div *ngFor="let goods of orderForm.value.goods.goodses">
+                        <p>
+                            <span><b>{{ goods.value.name }}</b></span>&nbsp;&nbsp;
+                            <span>Size: {{ goods.description.size }}</span>&nbsp;&nbsp;
+                            <span>Color: {{ goods.description.color }}</span>&nbsp;&nbsp;
+                            <span>Count: {{ goods.description.count }}</span>&nbsp;&nbsp;
+                            <span><b>${{ goods.value.price }}</b></span>                     
+                        </p>
+                    </div>
+
+                </div>
+                <div class="pt-3">
+                    <h3>Address</h3>
+                    <span><b>Country</b>: {{ orderForm.value.address.country }}</span>&nbsp;&nbsp;
+                    <span><b>City</b>: {{ orderForm.value.address.city }}</span>&nbsp;&nbsp;
+                    <span><b>Address</b>: {{ orderForm.value.address.address }}</span>&nbsp;&nbsp;
+                </div>
+                <div class="pt-3">
+                    <h3>Payment</h3>
+                    <span><b>Payment</b>: {{ orderForm.value.payment.payment }}</span>
+                </div>
+                <div class="pt-3">
+                    <h3>Date of delivery</h3>
+                    <span><b>Date</b>: {{ orderForm.value.date.delivery }}</span>
+                </div>
+            </div>
+            <button type="submit" class="btn-next" ><b>Submit</b></button>
+            <button type="button" class="btn-prev" (click)="prevStep()"><b>Prev</b></button>
+        </div>
+    </form>
+
+</div>
+<br><br><br><br><br>
+<br><br><br><br><br>
+<br><br><br><br><br>
+<br><br><br><br><br>

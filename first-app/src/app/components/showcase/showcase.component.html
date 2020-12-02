@@ -1,0 +1,11 @@
+            
+<div class="row">
+
+    <main>
+        <app-carousel></app-carousel>
+        <app-title-card *ngIf="titleCard" [product]="titleCard"></app-title-card>
+        <app-homecard *ngFor="let card of cardsOther;" [product]="card"></app-homecard>
+    </main>
+
+</div>
+

@@ -1,0 +1,87 @@
+.container {
+   max-width: 550px;
+}
+
+.border,
+.drop-list .second,
+.drop-list .first {
+    border: 1px solid black;
+    max-height: 380px;
+}
+
+.drop-list .second {
+    overflow-y: scroll;
+    position: absolute;
+}
+
+ul {
+    width: 400px;
+    margin-block-start: .2rem;
+    margin-block-end: .2rem;
+    padding-inline-start: 2px;
+}
+
+li {
+    list-style: none;
+    cursor: pointer;
+    margin-top: .3rem;
+}
+
+li > div > label,
+li > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.product {
+    width: 150px;
+    margin-right: .5rem;
+}
+
+li > div > div {
+    padding: .5rem;
+}
+
+.triangle {
+    display: flex;
+    align-items: center;
+}
+
+.btn-prev,
+.btn-next {
+    padding: .3rem 1rem;
+    background-color: white;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    float: right;
+}
+
+.address {
+    display: flex;
+    justify-content: center;
+}
+
+.address > div {
+    text-align: right;
+}
+
+.date,
+.payment {
+    text-align: center;
+}
+
+.date span,
+.payment input{
+    margin-left: 1.5rem;
+    margin-right: .5rem;
+}
+
+.date,
+.payment,
+.drop-list,
+.address {
+    min-height: 160px;
+    padding: .5rem;
+}

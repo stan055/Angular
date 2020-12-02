@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="../../../assets/img/logo.png" width="40" height="30" class="d-inline-block align-top" alt="">
+      Best Bike Shop &nbsp;
+    </a>
+    <div style="width: 100%; display: flex; justify-content:space-between;">
+          <div style="display: inline-flex">
+            <a class="nav-link" routerLink="/">Home</a>
+            <a class="nav-link" routerLink="/contact">Contact</a>
+            <a *ngIf="permission(orderPageRoles)" class="nav-link" routerLink="/order-page">Order Page</a>
+            <a *ngIf="permission(createProductRoles)" class="nav-link" routerLink="/new-product-page">New Product Page</a>
+            <a *ngIf="permission(editProductRoles)" class="nav-link" routerLink="/edit-product">Edit Product Page</a>
+          </div>
+          <div style="display: inline-flex">
+            <span class="nav-link">Hello {{ user.email }}</span>
+            <button *ngIf="unautorized" pButton type="button" label="SIGN IN / REGISTER" (click)="showDialog()"></button>
+            <button *ngIf="!unautorized" pButton type="button" label="LOGOUT" (click)="logout()"></button>
+          </div>
+    </div>
+    <app-sigin [display]="displaySignInModal" (messageEvent)="outputSigin($event)"></app-sigin>
+
+</nav>

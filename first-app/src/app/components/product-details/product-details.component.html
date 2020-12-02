@@ -1,0 +1,91 @@
+
+<div class="container pt-3">
+    <div class="row" *ngIf="product">
+        <div class="col-md-6 pt-3" >
+        <div class="img-block">
+            <div>
+                <img class="main-img" id="imgBig"  src="{{product.imgUrl[activeImgVal].imgUrl}}" (click)="toggleModalImg()">
+                <span class="btn-zoom" (click)="toggleModalImg()">+ zoom</span>
+            </div>
+            <div class="colors">Black/Blue/Yellow</div>
+            
+            <div class="row center">
+                <div *ngFor="let img of product.imgUrl; index as i;">
+                    <div class="little-img  active" *ngIf="activeImgVal == i" (click)="activeImg(i)">
+                        <img  src="{{img.imgUrl}}">
+                    </div>
+                    <div class="little-img" *ngIf="activeImgVal != i" (click)="activeImg(i)">
+                        <img src="{{img.imgUrl}}">
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="isModalImg" class="modal-img" #insideElement>
+                <span class="btn-close" (click)="toggleModalImg()"><b>X</b></span>
+                <img src="{{product.imgUrl[activeImgVal].imgUrl}}">
+            </div>
+        </div>
+        </div>
+        <div class="col-md-6 pt-3">
+
+            <h2><b>{{product.name}}</b></h2>
+            <p>{{contentDesctiption}}
+                <a class="href" *ngIf="!isContentToggled" (click)="toggleContent()" i18n>Read More</a>
+                <a class="href" *ngIf="isContentToggled" (click)="toggleContent()" i18n>Read Less</a>
+            </p>
+
+            <div><b style="font-size: x-large;">${{product.price}}</b></div>
+
+            <div class="stars">
+                <span *ngFor="let star of productReting;">{{ star }}</span>
+                <span class="count"><a href="#">({{reviewCount}})</a></span>
+            </div>
+
+            <div class="review"><a class="href" (click)="toggleReview()">Read {{reviewCount}} Rewiews</a> <a href="#">Write a Rewiew</a></div>
+            <br>
+            <div *ngIf="isReview">
+                <p *ngFor="let review of product.review;">
+                    <b>{{ review.author }}</b><br>
+                    {{ review.text }}<br>
+                    Rating {{ review.rating }}<br> 
+                </p>
+            </div>
+            <div class="pt-3">
+                <form action="#" method="post">
+                    <label for="color"><b>Color</b></label>
+                    <div class="select">
+                      <select name="color" id="color" class="select-field" (change)="colorChange($event)" required>
+                        <option value="" disabled selected>Select Color</option>
+                        <option *ngFor="let color of product.color;">{{ color }}</option>
+                      </select>
+                    </div>
+
+                    <label for="size"><b>Size</b></label>
+                    <div class="select">
+                      <select name="size" id="size" class="select-field" (change)="sizeChange($event)" required>
+                        <option value="" disabled selected>Select Size</option>
+                        <option *ngFor="let size of product.size;">{{ size }}</option>
+                      </select>
+                    </div>
+                    <p *ngIf="!availabillity" class="pt-3">
+                        <b>Availabillity: </b>Please select options
+                    </p>
+                    <div class="pt-3">
+                        <label for="quantity"><b>Quantity</b></label><br>
+                        <input class="quantity" type="number" id="quantity" name="quantity" value="1">
+                    </div>                  
+                    <br>
+                    <button type="submit" class="btn-card"><i class="icon-shopping-cart"></i> Add to cart</button>
+                    <br>
+                    <button type="submit" class="btn-wish-list"><i class="icon-magic"></i> Add to Wish List</button>
+                </form>
+            </div>
+            
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+
+.my-sing-in-tab {
+    display: inline-block;
+    text-align: center;
+    width: 220px;
+    cursor: default;
+    color: #222;
+    font-size: large;
+    padding: 1rem;
+}
+
+.active-my-tab {
+    border-bottom: solid 2px #2196F3;
+}
+
+.sign-in {
+    padding: .4rem 0;
+}
+
+.sign-in input {
+    width: 100%;
+    margin: 1.5rem 0;
+    padding: 5px 0;
+    font-size: large;
+    height: 27px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid 2px lightgrey;
+}
+
+.sign-in button {
+    margin-top: .6rem;
+    float: right;
+    padding: 1rem 2rem;
+}
+
+input:focus{
+    outline: none;
+}
+
+.myAlert {
+    color: red;
+    max-width: 440px;
+    text-align: left;
+}
+
+.provider {
+    text-align: center;
+}

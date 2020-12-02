@@ -1,0 +1,73 @@
+<p-dialog modal="true" position="top" [(visible)]="display" 
+    styleClass="mydialog" draggable (onHide)="onHide()">
+<p-header>
+
+  <span class="my-sing-in-tab" (click)="activateTab(1)"  
+    [ngClass]="{'active-my-tab': activeTab === 1}">
+      Sign In
+  </span>
+  <span class="my-sing-in-tab" (click)="activateTab(2)" 
+    [ngClass]="{'active-my-tab': activeTab === 2}"> 
+      Register
+  </span>
+
+</p-header>
+
+    <div class="sign-in" *ngIf="activeTab === 1">
+        <form (ngSubmit)="signinSubmit(signinForm.valid)" #signinForm="ngForm">
+            <div>
+                <input [(ngModel)]="login.email" #logEmail="ngModel" name="logEmail" placeholder="Login"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  required>
+                <div *ngIf="!logEmail.valid && submittedTab1" class="myAlert">
+                    Email is not valid
+                </div>
+            </div>
+            <div>
+                <input [(ngModel)]="login.password" #logPass="ngModel" name="logPass" type="password" 
+                    placeholder="Password" minlength="6" required>
+                <div *ngIf="!logPass.valid && submittedTab1" class="myAlert">
+                    Password minlength 6
+                </div>
+            </div>
+            <button type="submit" pButton label="SIGN IN"></button>
+        </form>
+    </div>
+
+    <div class="sign-in" *ngIf="activeTab === 2">
+        <form (ngSubmit)="registerSubmit(registerForm.valid)" #registerForm="ngForm">
+            <div>
+                <input [(ngModel)]="register.email" #registerEmail="ngModel" 
+                    name="registerEmail" placeholder="Email" required
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                <div *ngIf="!registerEmail.valid && submittedTab2" class="myAlert">
+                    Email is not valid
+                </div>
+            </div>
+            <div>
+                <input [(ngModel)]="register.password" #registerPass="ngModel" minlength="6"
+                    name="registerPass" type="password" placeholder="Password" required>
+                <div *ngIf="!registerPass.valid && submittedTab2" class="myAlert">
+                    Password minlength 6
+                </div>
+            </div>
+            <div>
+                <input [(ngModel)]="register.confirmPassword" #registerConfPass="ngModel" 
+                    name="registerConfPass" type="password" placeholder="Confirm password" required>
+                <div *ngIf="registerConfPass.value !== registerPass.value && submittedTab2" class="myAlert">
+                    Confirm password invalid
+                </div>
+            </div>
+            <button type="submit" pButton label="REGISTER"></button>
+        </form>
+    </div>
+
+    <p-footer>
+        <p class="myAlert">{{ errorMessage }}</p>
+        <p class="provider">
+            <a href="#" (click)="signInWithGoogle()">
+                <img src="https://www.drupal.org/files/issues/2020-01-26/google_logo.png" height="50">
+            </a>
+        </p>
+    </p-footer>
+
+</p-dialog>

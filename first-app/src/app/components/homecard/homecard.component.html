@@ -1,0 +1,28 @@
+<div appDisColor [appDisOutline]="product.discount"  class="card">
+    <a routerLink="/product/{{product.id}}">
+        <span appDisColor [appDisBackground]="product.discount"  class="circle"> {{ product.discount }}% off </span>
+        <div class="content">
+            <div class="text-image top-padd horizon-padd">
+                <div class="text">
+                    <span class="title">{{ product.name }}</span> 
+                    {{ product.description | myslice:36 }}
+                </div>
+                <div class="img center-img">
+                    <img *ngIf="product.imgUrl[0]" src="{{ product.imgUrl[0].imgUrl }}">
+                </div>
+            </div>
+            <div class="top-padd horizon-padd">
+                <span appDisColor [appDisColor]="product.discount" class="price">{{ product.price | euro }}</span>
+                <span class="strikethrough">$69.99</span>
+                <span class="amazon">{{ product.shop }}</span>
+            </div>
+
+            <div class=" horizon-padd">
+                <hr class="dotted-line">
+            </div>
+            <div class="bottom-padd">
+                <span class="center">New</span>
+            </div>
+        </div>
+    </a>
+</div>

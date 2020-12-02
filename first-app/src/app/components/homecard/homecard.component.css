@@ -1,0 +1,170 @@
+.horizon-padd{
+    padding-left: .3rem;
+    padding-right: .3rem;
+}
+
+.top-padd{
+    padding-top: .3rem;
+}
+
+.bottom-padd{
+    padding-bottom: .3rem;
+}
+
+a {
+    text-decoration: none;
+    color: gray;
+}
+
+.card {
+    margin: 1rem 0;
+    height: auto;
+    outline: 1px solid orange;
+    line-height: 1rem;
+    font-size: smaller;
+    font-weight: 300;
+}
+
+.card:hover {
+    outline: 3px solid orange;
+}
+
+.content {
+    min-height: 180px;
+    display: grid;
+    grid-template-rows: 1fr 30px 8px 20px;
+}
+
+hr {
+    margin-top: 5px;
+    margin-bottom: 2px;
+}
+
+.text-image {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.text-image .text {
+    align-self: end;
+    padding-bottom: 3px;
+}
+
+.text-image .img img {
+    width: 170px;
+    height: 110px;
+
+}
+
+.center-img {
+    display: flex;
+    justify-content: center;
+}
+
+.display-img {
+    display: flex;
+    width: 80%;
+    margin: auto;
+}
+
+.circle {
+    margin: .3rem;
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 100%;
+    display: block;
+    position: absolute;
+    color: white;
+    padding: 0.6rem;
+    text-align: center;
+    font-size: 1pc;
+    font-weight: 400;
+    line-height: 1.2rem;
+}
+
+.coral {
+    background-color: coral;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.gold {
+    background-color: gold;
+}
+
+.price {
+    font-size: xx-large;
+    color: orange;
+}
+
+a:hover .price {
+    color: red;
+}
+
+a:hover .title {
+    text-decoration: underline;
+}
+
+.amazon {
+    float: right;
+    padding-top: .4rem;
+}
+
+.strikethrough {
+    font-size: medium;
+    margin-left: 8px;
+    width: 51px;
+    color: gray;
+    position: relative;
+  }
+  .strikethrough:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 40%;
+    right: 0;
+    border-top: 2px solid;
+    border-color: inherit;
+  
+    -webkit-transform:rotate(12deg);
+    -moz-transform:rotate(12deg);
+    -ms-transform:rotate(12deg);
+    -o-transform:rotate(12deg);
+    transform:rotate(12deg);
+  }
+
+.dotted-line {
+    border-top: none;
+    border-bottom: 2px dotted;
+    color: rgb(214, 214, 214);
+}
+
+.bottom {  
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    justify-content: center;
+}
+
+.bottom50 {  
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-content: center;
+}
+
+.center {  
+    display: grid;
+    justify-content: center; 
+}
+
+.vert-line { 
+    border-right: 2px solid rgb(233, 233, 233);
+}
+
+@media only screen and (max-width: 950px) {
+    .text-image .img img {
+        width: 100%;
+        height: auto;
+    }
+}

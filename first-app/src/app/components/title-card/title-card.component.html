@@ -1,0 +1,29 @@
+<div  appDisColor [appDisOutline]="product.discount"  class="card top">
+    <a routerLink="/product/{{product.id}}">
+        <span appDisColor [appDisBackground]="product.discount"  class="circle"> {{ product.discount }}% off </span>
+        <div class="top-content">
+            <div class="center-img">
+                <img *ngIf="product.imgUrl[0]" class="display-img" [src]="product.imgUrl[0].imgUrl">
+            </div>
+            <div class="horizon-padd">
+                <span appDisColor [appDisColor]="product.discount" class="price">{{ product.price | euro }}</span>
+                <span class="strikethrough">$69.99</span>
+                <span class="amazon">{{ product.shop }}</span>
+            </div>
+            <div class="horizon-padd ">
+                <hr class="dotted-line">
+            </div>
+            <div class="text horizon-padd ">
+                <span class="title">{{ product.name }}</span> 
+                {{ product.description | myslice: 340 }}...
+            </div>
+            <div class=" horizon-padd ">
+                <hr class="dotted-line">
+            </div>
+            <div class="bottom  horizon-padd bottom-padd">
+                <span class="vert-line center">Free Shipping</span><span
+                  class="vert-line center">New</span><span class="center">00:02:29</span>
+            </div>
+        </div>
+    </a>    
+</div>

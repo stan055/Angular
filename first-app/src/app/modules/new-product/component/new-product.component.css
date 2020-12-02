@@ -1,0 +1,39 @@
+.add-product-form {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.form-group label,
+.form-group legend {
+    text-align: right;
+}
+
+.submit {
+    padding: .4rem 1.6rem;
+    margin: 0 auto;
+    width:60%;
+    background: white;
+}
+
+.initImgUrl {
+    list-style: none;
+    padding-inline-start: 0;
+}
+
+.initImgUrl span {
+    padding-left: 20px;
+}
+
+.initImgUrl li {
+    padding: 5px 17px;
+    margin: 15px 0;
+}
+
+.initImgUrl button {
+    float: right;
+    height: 40px;
+    width: 37px;
+    background-color:#2196F3;
+    border: none;
+    border-radius: 3px;
+}
